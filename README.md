@@ -122,7 +122,6 @@ pert4/
 │   └── composer.json                    # Dependensi Laravel 11
 │
 ├── .gitignore                           # File pengecualian Git
-├── DESIGN.md                            # Panduan desain & standar antarmuka
 ├── README.md                            # Dokumentasi lengkap proyek
 └── start.bat                            # Skrip otomatis menjalankan kedua server
 ```
