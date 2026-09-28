@@ -122,77 +122,74 @@ pert4/
 │   └── composer.json                    # Dependensi Laravel 11
 │
 ├── .gitignore                           # File pengecualian Git
-├── README.md                            # Dokumentasi lengkap proyek
-└── start.bat                            # Skrip otomatis menjalankan kedua server
+└── README.md                            # Dokumentasi lengkap proyek
 ```
 
 ---
 
 ## 💻 Prasyarat Sistem
 
-Sebelum menjalankan proyek, pastikan perangkat telah terpasang:
-- **Node.js** (versi 18 ke atas) & **npm**
-- **PHP** (versi 8.2 ke atas) dengan ekstensi `curl`, `mbstring`, `openssl`, `sqlite3` aktif
-- **Composer** (untuk dependensi Laravel)
+Sebelum menjalankan proyek, pastikan di komputer Anda sudah terpasang:
+- **Node.js** (v18 atau lebih baru) & **npm**
+- **PHP** (v8.2 atau lebih baru) dengan ekstensi `curl`, `mbstring`, `openssl`, `sqlite3` aktif
+- **Composer** (Dependency manager PHP)
 - **Git**
 
 ---
 
-## 🚀 Panduan Menjalankan Sistem
+## 🚀 Panduan Menjalankan Sistem (Standar)
 
-### Cara 1: Jalankan Otomatis dengan 1 Klik (Windows)
-Cukup klik ganda file **`start.bat`** yang ada di root folder, atau jalankan melalui terminal:
-```cmd
-start.bat
+Sistem ini terdiri dari dua server yang berjalan secara paralel: **Backend (Express.js - Port 5000)** dan **Frontend (Laravel - Port 8001)**. Buka **dua jendela terminal** terpisah:
+
+### 1. Terminal 1: Menjalankan Backend (Express.js)
+
+Masuk ke folder `backend`, pasang dependensi, lalu jalankan server:
+
+```bash
+# 1. Pindah ke direktori backend
+cd backend
+
+# 2. Pasang dependensi Node.js
+npm install
+
+# 3. Buat file konfigurasi .env dari template
+cp .env.example .env
+
+# 4. Jalankan server backend
+npm start
+# atau: node server.js
 ```
-Skrip ini akan otomatis membuka dua jendela terminal:
-1. Server Backend Express pada port **5000**
-2. Server Frontend Laravel pada port **8001**
 
-Buka browser di alamat: **`http://127.0.0.1:8001`**
+> 🟢 **Backend Aktif**: `http://127.0.0.1:5000`  
+> Database SQLite `data.db` dan data seed awal akan otomatis dibuat saat server dijalankan pertama kali.
 
 ---
 
-### Cara 2: Menjalankan Secara Manual
+### 2. Terminal 2: Menjalankan Frontend (Laravel 11)
 
-#### Langkah A: Jalankan Backend (Express.js)
-Buka terminal pertama:
+Buka terminal baru, masuk ke folder `frontend`, lakukan instalasi dependensi, lalu jalankan server Laravel:
+
 ```bash
-cd backend
-
-# 1. Install dependensi
-npm install
-
-# 2. Buat file .env (opsional, sudah memiliki default di server.js)
-cp .env.example .env
-
-# 3. Jalankan server
-node server.js
-```
-> Server backend akan berjalan di: **`http://127.0.0.1:5000`**  
-> Database SQLite `data.db` dan akun awal akan otomatis dibuat saat server pertama kali dijalankan.
-
-#### Langkah B: Jalankan Frontend (Laravel 11)
-Buka terminal kedua:
-```bash
+# 1. Pindah ke direktori frontend
 cd frontend
 
-# 1. Install dependensi composer
+# 2. Pasang dependensi composer
 composer install
 
-# 2. Siapkan file .env
+# 3. Salin file environment
 cp .env.example .env
 
-# 3. Generate Application Key
+# 4. Generate Application Key Laravel
 php artisan key:generate
 
-# 4. Pastikan EXPRESS_API_URL di .env mengarah ke:
+# 5. Pastikan EXPRESS_API_URL pada file .env mengarah ke backend:
 # EXPRESS_API_URL=http://127.0.0.1:5000
 
-# 5. Jalankan server Laravel pada port 8001
+# 6. Jalankan server frontend pada port 8001
 php artisan serve --host=127.0.0.1 --port=8001
 ```
-> Buka antarmuka web di: **`http://127.0.0.1:8001`**
+
+> 🔵 **Frontend Aktif**: Buka browser Anda di **`http://127.0.0.1:8001`**
 
 ---
 
